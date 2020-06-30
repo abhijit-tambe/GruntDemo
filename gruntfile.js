@@ -1,5 +1,9 @@
 // load pluggin
-//register tasks
+//register tasks.
+/*to do
+jshint
+watch*/
+var sass = require("node-sass");
 module.exports = function (grunt) {
   //configuration
   grunt.initConfig({
@@ -14,12 +18,50 @@ module.exports = function (grunt) {
         dest: "build/style.css",
       },
     },
+    sass: {
+      options: {
+        implementation: sass,
+        // sourceMap: true,
+      },
+      build: {
+        files: [
+          {
+            src: "css/sass/style.scss",
+            dest: "css/styles.css",
+          },
+        ],
+      },
+    },
+    uglify: {
+      build: {
+        files: [
+          {
+            src: "build/scripts.js",
+
+            dest: "build/scripts.js",
+          },
+        ],
+      },
+    },
+    imagemin: {
+      build: {
+        files: [
+          {
+            src: "images/bg.jpg",
+            dest: "build/bg.jpg",
+          },
+        ],
+      },
+    },
   });
 
   // Load the Pluggins
   //grunt.loadNpmTasks()
   grunt.loadNpmTasks("grunt-contrib-concat");
-  //register tasks
+  grunt.loadNpmTasks("grunt-sass");
+  grunt.loadNpmTasks("grunt-contrib-uglify");
+  grunt.loadNpmTasks("grunt-contrib-imagemin");
   grunt.registerTask("concat-js", ["concat:js"]);
   grunt.registerTask("concat-css", ["concat:css"]);
+  // grunt.registerTask("sass", ["sass"]);
 };
