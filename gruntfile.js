@@ -9,6 +9,10 @@ module.exports = function (grunt) {
         src: ["js/*.js"],
         dest: "build/scripts.js",
       },
+      css: {
+        src: ["css/*.css"],
+        dest: "build/style.css",
+      },
     },
   });
 
@@ -16,7 +20,6 @@ module.exports = function (grunt) {
   //grunt.loadNpmTasks()
   grunt.loadNpmTasks("grunt-contrib-concat");
   //register tasks
-  grunt.registerTask("run", function () {
-    console.log("task is running");
-  });
+  grunt.registerTask("concat-js", ["concat:js"]);
+  grunt.registerTask("concat-css", ["concat:css"]);
 };
